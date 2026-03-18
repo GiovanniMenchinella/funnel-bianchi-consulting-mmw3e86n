@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grazie! — Bianchi Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1234567890123456');
+    fbq('track', 'PageView');
+    fbq('track', 'Schedule');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1234567890123456&ev=Schedule&noscript=1"/>
+  </noscript>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --accent: #2563EB;
+      --accent-hover: #1d4ed8;
+      --bg-body: #0A0A0A;
+      --bg-card: #111111;
+      --bg-elevated: #1A1A1A;
+      --text-primary: #F8F8F8;
+      --text-secondary: #A0A0A0;
+      --text-muted: #606060;
+      --border: rgba(255,255,255,0.08);
+      --radius-card: 12px;
+      --radius-btn: 8px;
+      --radius-pill: 9999px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes checkDraw {
+      from { stroke-dashoffset: 100; }
+      to   { stroke-dashoffset: 0; }
+    }
+
+    @keyframes circleDraw {
+      from { stroke-dashoffset: 283; }
+      to   { stroke-dashoffset: 0; }
+    }
+
+    .animate-fade-up {
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+    .delay-4 { animation-delay: 0.5s; }
+    .delay-5 { animation-delay: 0.65s; }
+    .delay-6 { animation-delay: 0.8s; }
+    .delay-7 { animation-delay: 0.95s; }
+
+    /* ─── HEADER ─── */
+    .header {
+      padding: 28px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      animation: fadeIn 0.4s ease both;
+    }
+
+    .logo {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .logo-fallback {
+      font-size: clamp(18px, 3vw, 22px);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-fallback span {
+      color: var(--accent);
+    }
+
+    /* ─── MAIN ─── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    /* ─── HERO SECTION ─── */
+    .hero {
+      text-align: center;
+      padding: 80px 0 60px;
+      max-width: 640px;
+      width: 100%;
+    }
+
+    .checkmark-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+      animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+    }
+
+    .checkmark-svg {
+      width: 88px;
+      height: 88px;
+    }
+
+    .checkmark-circle {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 3;
+      stroke-dasharray: 283;
+      stroke-dashoffset: 283;
+      animation: circleDraw 0.6s ease 0.3s forwards;
+    }
+
+    .checkmark-check {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: checkDraw 0.4s ease 0.85s forwards;
+    }
+
+    .checkmark-bg {
+      fill: rgba(37, 99, 235, 0.12);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      color: #93b4f7;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-headline {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .hero-headline span {
+      color: var(--accent);
+    }
+
+    .hero-subline {
+      font-size: clamp(16px, 2.5vw, 18px);
+      color: var(--text-secondary);
+      line-height: 1.65;
+      font-weight: 400;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .hero-subline strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      width: 100%;
+      max-width: 720px;
+      height: 1px;
+      background: var(--border);
+      margin: 0 auto;
+    }
+
+    /* ─── STEPS SECTION ─── */
+    .section {
+      width: 100%;
+      max-width: 720px;
+      padding: 60px 0;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      margin-bottom: 36px;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .step-card:hover {
+      border-color: rgba(37, 99, 235, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-size: clamp(15px, 2vw, 17px);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .step-desc {
+      font-size: clamp(14px, 1.8vw, 15px);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .step-desc strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ─── WHATSAPP BUTTON ─── */
+    .cta-section {
+      width: 100%;
+      max-width: 720px;
+      padding-bottom: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cta-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 0 28px;
+      min-height: 56px;
+      border-radius: var(--radius-btn);
+      transition: background 0.2s ease, transform 0.2s ease;
+      width: 100%;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+      transform: translateY(-1px);
+    }
+
+    .btn-whatsapp:active {
+      transform: translateY(0);
+    }
+
+    /* ─── REMINDER BOX ─── */
+    .reminder-section {
+      width: 100%;
+      max-width: 720px;
+      padding-bottom: 80px;
+    }
+
+    .reminder-box {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reminder-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    .reminder-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .reminder-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reminder-text {
+      flex: 1;
+    }
+
+    .reminder-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .reminder-title {
+      font-size: clamp(17px, 2.5vw, 20px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .reminder-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .btn-secondary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 0 24px;
+      min-height: 52px;
+      border-radius: var(--radius-btn);
+      transition: background 0.2s ease, transform 0.2s ease;
+      width: 100%;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0);
+    }
+
+    /* ─── SOCIAL PROOF STRIP ─── */
+    .social-strip {
+      width: 100%;
+      max-width: 720px;
+      margin-bottom: 60px;
+    }
+
+    .social-strip-inner {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-value {
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .stat-value span {
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+      display: none;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-bottom: 14px;
+    }
+
+    .footer-link {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--text-secondary);
+    }
+
+    .footer-dot {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .footer-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (min-width: 600px) {
+      .btn-whatsapp,
+      .btn-secondary {
+        width: auto;
+        align-self: center;
+        padding: 0 36px;
+      }
+
+      .cta-section {
+        align-items: center;
+      }
+
+      .reminder-box {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .social-strip-inner {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .step-card {
+        padding: 20px;
+      }
+
+      .reminder-box {
+        padding: 24px;
+      }
+
+      .hero {
+        padding: 60px 0 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <img
+      src="https://bianchiconsulting.it/logo.png"
+      alt="Bianchi Consulting"
+      class="logo"
+      onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';"
+    />
+    <div class="logo-fallback" id="logo-fallback" style="display:none;">
+      Bianchi<span>Consulting</span>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="checkmark-wrapper">
+        <svg class="checkmark-svg" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle class="checkmark-bg" cx="45" cy="45" r="44"/>
+          <circle class="checkmark-circle" cx="45" cy="45" r="44" transform="rotate(-90 45 45)"/>
+          <path class="checkmark-check" d="M28 45 L40 57 L62 33"/>
+        </svg>
+      </div>
+
+      <div class="pill-badge animate-fade-up delay-1">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="6" cy="6" r="6" fill="#2563EB" fill-opacity="0.3"/>
+          <circle cx="6" cy="6" r="3" fill="#2563EB"/>
+        </svg>
+        Prenotazione confermata
+      </div>
+
+      <h1 class="hero-headline animate-fade-up delay-2">
+        Ottimo lavoro,<br/><span>sei a un passo</span>
+      </h1>
+
+      <p class="hero-subline animate-fade-up delay-3">
+        Abbiamo ricevuto la tua richiesta. Il team di Bianchi Consulting esaminerà il tuo profilo
+        e si farà trovare <strong>puntuale alla call prenotata.</strong>
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SOCIAL PROOF STRIP -->
+    <div class="social-strip animate-fade-up delay-4">
+      <div style="padding: 32px 0 0; margin-bottom: -8px;">
+        <p style="font-size: 12px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-bottom: 20px;">I numeri che ci parlano</p>
+      </div>
+      <div class="social-strip-inner">
+        <div class="stat-item">
+          <div class="stat-value">2<span>M+</span></div>
+          <div class="stat-label">Ad spend gestito per clienti e-commerce</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">4.2<span>x</span></div>
+          <div class="stat-label">ROAS medio sui nostri clienti attivi</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">80<span>+</span></div>
+          <div class="stat-label">Store e-commerce scalati con successo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT HAPPENS NEXT -->
+    <section class="section animate-fade-up delay-4">
+      <p class="section-label">Prossimi passi</p>
+      <h2 class="section-title">Cosa succede adesso</h2>
+
+      <div class="steps-list">
+
+        <div class="step-card animate-fade-up delay-4">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <p class="step-title">Riceverai un'email di conferma a breve</p>
+            <p class="step-desc">
+              Controlla la tua casella email — ti arriverà una conferma con <strong>data, ora e link alla call.</strong>
